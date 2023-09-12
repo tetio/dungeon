@@ -7,6 +7,7 @@ const mob_resource = preload("res://objects/mob.tscn")
 const tile_size = 16
 const spawn_point = Vector2(10*tile_size, 10*tile_size)
 
+var mob_counter = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,6 +47,8 @@ func make_room(pos, width, height):
 
 func _on_timer_timeout():
 	var mob = mob_resource.instantiate()
+	mob_counter += 1
 	mob.position = spawn_point
+	mob.name = "Mob-%d" % mob_counter
 	print('Mob name: [%s]'%mob.name)
 	add_child(mob)
